@@ -1,36 +1,55 @@
-var backdrop = document.querySelector('.backdrop');
-var modal = document.querySelector('.modal');
-var selectPlanButtons = document.querySelectorAll('.plan button')
-var closeModalButton = document.querySelector('.modal__action--negative')
-// console.dir(backdrop)
+var backdrop = document.querySelector(".backdrop");
+var modal = document.querySelector(".modal");
+var selectPlanButtons = document.querySelectorAll(".plan button");
+var modalNoButton = document.querySelector(".modal__action--negative");
+var toggleButton = document.querySelector(".toggle-button");
+var mobileNav = document.querySelector(".mobile-nav");
+console.dir(backdrop);
 // console.dir(selectPlanButtons);
 for (var i = 0; i < selectPlanButtons.length; i++) {
-    selectPlanButtons[i].addEventListener('click', function() {
-       modal.style.display = 'block';
-       backdrop.style.display = 'block';    
-    });
+  selectPlanButtons[i].addEventListener("click", function () {
+    // modal.style.display = 'block';
+    // backdrop.style.display = 'block';
+    modal.classList.add("open");
+    backdrop.classList.add("open");
+    // modal.className = 'open'; // This will actualy overwrite the complet class list //
+  });
 }
-
-
-
 
 // backdrop.addEventListener('click', function() {
 //     modal.style.display = 'none';
-//     backdrop.style.display = 'none';    
+//     backdrop.style.display = 'none';
 //     });
-
 
 // closeModalButton.addEventListener('click', function() {
 //     modal.style.display = 'none';
-//     backdrop.style.display = 'none';    
+//     backdrop.style.display = 'none';
 //     });
 
-backdrop.addEventListener ("click", closeModal )
+backdrop.addEventListener("click", function () {
+  // mobileNav.style.display = 'none';
+  mobileNav.classList.remove("open");
+  closeModal();
+});
 
-closeModalButton.addEventListener ("click", closeModal )
-
+if (modalNoButton) {
+  modalNoButton.addEventListener("click", closeModal);
+}
 
 function closeModal() {
-    backdrop.style.display = 'none';
-    modal.style.display = 'none';
+  // backdrop.style.display = 'none';
+  // modal.style.display = 'none';
+
+  if (modal) {
+  
+    modal.classList.remove("open");
+  }
+  backdrop.classList.remove("open");
 }
+
+toggleButton.addEventListener("click", function () {
+  // mobileNav.style.display = 'block';
+  // backdrop.style.display = 'block';
+  mobileNav.classList.add("open");
+  backdrop.classList.add("open");
+});
